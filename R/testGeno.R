@@ -34,8 +34,7 @@ testGenoSingleVar <- function(nullmod, G, E = NULL, test = c("Score", "Wald"), G
     
     if (test == "Score"){
         if(useGWG){
-            r <- nullmod$r
-            Gtilde <- calcGtildeWithW(nullmod, G, r = r)
+            Gtilde <- calcGtildeWithW(nullmod, G, r = nullmod$r)
         }else{
             Gtilde <- calcGtilde(nullmod, G)
         }
