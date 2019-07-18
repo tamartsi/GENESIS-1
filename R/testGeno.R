@@ -7,7 +7,7 @@
 
 
 # E an environmental variable for optional GxE interaction analysis. 
-testGenoSingleVar <- function(nullmod, G, E = NULL, test = c("Score", "Wald"), GxE.return.cov = FALSE, useGWG = FALSE){
+testGenoSingleVar <- function(nullmod, G, E = NULL, test = c("Score", "Wald"), GxE.return.cov = FALSE, useGWG = TRUE){
     test <- match.arg(test)
 
     G <- .genoAsMatrix(nullmod, G)
