@@ -187,7 +187,7 @@
                 fitted.values = fitted.values, resid.marginal =resid.marginal, 
                 resid.conditional = resid.conditional, logLik = logLik, 
                 logLikR = logLikR, AIC = AIC, workingY = workingY, outcome = y,
-                model.matrix = X, group.idx = group.idx, cholSigmaInv = cholSigmaInv, 
+                model.matrix = X, group.idx = group.idx, cholSigmaInv = cholSigmaInv, W = vc.mod$W,
                 converged = converged, zeroFLAG = zeroFLAG, niter = niter, RSS = RSS)
     class(out) <- "GENESIS.nullMixedModel"
     return(out)

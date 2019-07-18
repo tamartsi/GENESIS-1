@@ -34,6 +34,7 @@ nullModelTestPrep <- function(nullmod){
 
 ##  adjust genotypes for correlation structure and fixed effects
 ##  this replaces calcXtilde; changed the name to be less confusing; X is covariates and G is genotypes
+##  square of Gtilde is G'PG
 calcGtilde <- function(nullmod, G){
     C <- nullmod$cholSigmaInv
 
@@ -61,6 +62,23 @@ calcGtilde <- function(nullmod, G){
         Gtilde <- do.call(cbind, Gtilde)
     }
     
+    return(Gtilde)
+}
+
+##  this uses the variance approxmiation from SAIGE
+##  square of Gtilde is G'WG
+calcGtildeWithW <- function(nullmod, G, r = 1){
+    ## replace C = sqrt(Sigma^{-1}) with W^{1/2}
+    X <- nullmod$model.matrix
+    W <- nullmod$W
+
+    # W is the diagonal of a matrix
+    WX <- W*X
+    XWX.inv <- solve(crossprod(X,WX))
+    # G - X(X'WX)^{-1}(X'WG)
+    Gtilde <- G - tcrossprod(X, crossprod(crossprod(WX, G), XWX.inv))
+    Gtilde <- (sqrt(r)*sqrt(W))*Gtilde
+
     return(Gtilde)
 }
 

@@ -36,6 +36,6 @@
     # inverse
     Sigma.inv <- chol2inv(cholSigma)
 
-    return(list(Sigma.inv = Sigma.inv, Vre = Vre, diagV = diagV, cholSigma.diag = diag(cholSigma)))
+    return(list(Sigma.inv = Sigma.inv, cholSigma.diag = diag(cholSigma), Vre = Vre, W = 1/diagV))
 
 }
